@@ -5,7 +5,7 @@ require 'cfme_tools_services/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "cfme_tools_services"
-  spec.version       = CfmeToolsServices::VERSION
+  spec.version       = CFMEToolsServices::VERSION
   spec.authors       = ["Jason Frey"]
   spec.email         = ["jfrey@redhat.com"]
   spec.description   = %q{Shared services for internal CFME Tools and applications}
@@ -19,6 +19,12 @@ Gem::Specification.new do |spec|
   spec.test_files    = `git ls-files -- spec/*`.split("\n")
   spec.require_paths = ["lib"]
 
+  spec.add_dependency "activesupport"
+  spec.add_dependency "minigit",       "~> 0.0.4"
+  spec.add_dependency "github_api",    "~> 0.11.1"
+  spec.add_dependency "ruby_bugzilla", "~> 0.4.2"
+
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
+  spec.add_development_dependency "rspec"
 end
