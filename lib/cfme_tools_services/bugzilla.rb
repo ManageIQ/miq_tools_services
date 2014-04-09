@@ -5,7 +5,7 @@ module CFMEToolsServices
     class << self
       attr_accessor :credentials
     end
-    delegate :credentials, :to => :Bugzilla
+    delegate :credentials, :to => self
 
     def initialize
       service # initialize the service

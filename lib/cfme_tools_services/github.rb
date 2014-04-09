@@ -5,7 +5,7 @@ module CFMEToolsServices
     class << self
       attr_accessor :credentials
     end
-    delegate :credentials, :to => :Github
+    delegate :credentials, :to => self
 
     def self.configure
       return if @configured
