@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe GitService do
+describe CFMEToolsServices::MiniGit do
   let(:service) { double("git service") }
 
   before do
