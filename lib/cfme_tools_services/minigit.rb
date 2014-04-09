@@ -23,6 +23,10 @@ module CFMEToolsServices
       end
     end
 
+    def bugzilla_ids(ref)
+      Bugzilla.ids_in_git_commit_message(commit_message(ref))
+    end
+
     def temporarily_checkout(ref)
       ref      = ref_name(ref)
       orig_ref = current_branch

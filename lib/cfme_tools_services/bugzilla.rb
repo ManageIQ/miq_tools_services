@@ -19,5 +19,14 @@ module CFMEToolsServices
         bz
       end
     end
+
+    def self.ids_in_git_commit_message(message)
+      ids = []
+      message.each_line.collect do |line|
+        match = %r{^\s*https://bugzilla\.redhat\.com/show_bug\.cgi\?id=(?<bug_id>\d+)$}.match(line)
+        ids << match[:bug_id].to_i if match
+      end
+      ids
+    end
   end
 end
