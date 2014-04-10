@@ -49,6 +49,14 @@ module CFMEToolsServices
       name.empty? ? ref : name
     end
 
+    def author_name(ref)
+      log("-1", "--format=\"%an\"", ref)
+    end
+
+    def author_email(ref)
+      log("-1", "--format=\"%ae\"", ref)
+    end
+
     def current_branch
       ref = ref_name("HEAD")
       ref == "HEAD" ? current_ref : ref
