@@ -5,8 +5,13 @@ module CFMEToolsServices
     attr_accessor :gemfile_path
 
     def initialize(opts)
-      targets = opts[:targets]
+      targets = Array.new(opts[:targets])
       @gemfile_path = opts[:gemfile_path]
+
+      targets.delete(:errata) if opts[:advisory_uri].blank?
+      targets.delete(:git)    if opts[:dist_git_uri].blank?
+      targets.delete(:koji)   if opts[:build_uri].blank? ||
+                                 opts[:build_tags].blank?
 
       require 'polisher/gemfile'
       ::Polisher::VersionChecker.check(*targets)
