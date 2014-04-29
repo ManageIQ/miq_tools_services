@@ -13,10 +13,9 @@ module CFMEToolsServices
 
     def service
       @service ||= begin
-        require 'ruby_bugzilla'
-        bz = ::RubyBugzilla.new(*credentials.values_at("bugzilla_uri", "username", "password"))
-        bz.login
-        bz
+        require 'active_bugzilla'
+        bz = ActiveBugzilla::Service.new(*credentials.values_at("bugzilla_uri", "username", "password"))
+        ActiveBugzilla::Base.service = bz
       end
     end
 

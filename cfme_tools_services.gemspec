@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "activesupport"
   spec.add_dependency "minigit",       "~> 0.0.4"
   spec.add_dependency "github_api",    "~> 0.11.1"
-  spec.add_dependency "ruby_bugzilla", "~> 0.4.2"
+  spec.add_dependency "active_bugzilla"
   spec.add_dependency "polisher",      "~> 0.9.1"
 
   spec.add_development_dependency "bundler", "~> 1.3"
