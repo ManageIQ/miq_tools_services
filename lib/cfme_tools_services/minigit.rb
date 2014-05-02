@@ -57,6 +57,10 @@ module CFMEToolsServices
       log("-1", "--format=\"%ae\"", ref)
     end
 
+    def subject(ref)
+      log("-1", "--format=\"%s\"", ref)
+    end
+
     def current_branch
       ref = ref_name("HEAD")
       ref == "HEAD" ? current_ref : ref
