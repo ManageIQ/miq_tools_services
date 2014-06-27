@@ -19,6 +19,7 @@ module CFMEToolsServices
       if targets.include?(:git)
         require 'polisher/git/pkg'
         ::Polisher::Git::Pkg.dist_git_url opts[:dist_git_uri]
+        ::Polisher::Git::Pkg.pkg_cmd opts[:pkg_cmd]
       end
 
       if targets.include?(:koji)
