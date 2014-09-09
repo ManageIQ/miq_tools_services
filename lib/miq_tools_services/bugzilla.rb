@@ -1,4 +1,4 @@
-module CFMEToolsServices
+module MiqToolsServices
   class Bugzilla
     include ServiceMixin
 

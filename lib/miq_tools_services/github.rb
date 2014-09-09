@@ -1,4 +1,4 @@
-module CFMEToolsServices
+module MiqToolsServices
   class Github
     include ServiceMixin
 

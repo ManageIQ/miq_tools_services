@@ -2,7 +2,7 @@ require "thread"
 require "active_support/core_ext/module/delegation"
 require "active_support/concern"
 
-module CFMEToolsServices
+module MiqToolsServices
   module ServiceMixin
     extend ActiveSupport::Concern
 

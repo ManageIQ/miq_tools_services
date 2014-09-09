@@ -1,4 +1,4 @@
-module CFMEToolsServices
+module MiqToolsServices
   class Polisher
     include ServiceMixin
 
@@ -40,4 +40,4 @@ module CFMEToolsServices
       @gemfile ||= ::Polisher::Gemfile.parse(gemfile_path)
     end
   end # class Polisher
-end # module CFMEToolsServices
+end # module MiqToolsServices

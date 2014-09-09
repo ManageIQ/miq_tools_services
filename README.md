@@ -1,12 +1,12 @@
-# CFMEToolsServices
+# MiqToolsServices
 
-Shared services for internal CFME Tools and applications
+Shared services for ManageIQ tools and applications
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'cfme_tools_services'
+    gem 'miq_tools_services'
 
 And then execute:
 
@@ -14,7 +14,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install cfme_tools_services
+    $ gem install miq_tools_services
 
 ## Usage
 

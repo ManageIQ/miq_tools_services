@@ -17,9 +17,9 @@ RSpec.configure do |config|
 
   config.before do
     service_models = [
-      CFMEToolsServices::Bugzilla,
-      CFMEToolsServices::MiniGit,
-      CFMEToolsServices::Github
+      MiqToolsServices::Bugzilla,
+      MiqToolsServices::MiniGit,
+      MiqToolsServices::Github
     ]
     service_models.each do |service_model|
       service_model.any_instance.stub(:service).and_raise(
@@ -33,4 +33,4 @@ end
 # in spec/support/ and its subdirectories.
 Dir[File.join(File.dirname(__FILE__), "support/**/*.rb")].each { |f| require f }
 
-require 'cfme_tools_services'
+require 'miq_tools_services'
