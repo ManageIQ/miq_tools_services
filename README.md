@@ -1,29 +1,20 @@
 # MiqToolsServices
 
+[![Build Status](https://travis-ci.org/ManageIQ/miq_tools_services.svg)](https://travis-ci.org/ManageIQ/miq_tools_services)
+[![Code Climate](https://codeclimate.com/github/ManageIQ/miq_tools_services/badges/gpa.svg)](https://codeclimate.com/github/ManageIQ/miq_tools_services)
+
 Shared services for ManageIQ tools and applications
 
-## Installation
+The service wrappers allow us to have a central location for "extension"
+methods, as well as providing thread safety around things that may not be thread
+safe.  The latter is important because most of the ManageIQ tools use
+[Sidekiq](http://sidekiq.org/) which runs in a threaded context.
 
-Add this line to your application's Gemfile:
-
-    gem 'miq_tools_services'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install miq_tools_services
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+Services that are wrapped or extended include
+- Bugzilla (via the [ActiveBugzilla](http://rubygems.org/gems/active_bugzilla)
+  gem)
+- GitHub (via the [GitHub API](http://peter-murach.github.io/github/) gem)
+- Git (via the [MiniGit](http://rubygems.org/gems/minigit) gem)
+- Sidekiq (extension mixin)
+- Ruby gem / rpm services (via the [Polisher](http://rubygems.org/gems/polisher)
+  gem)
