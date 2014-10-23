@@ -1,4 +1,4 @@
-shared_examples_for "ServiceMixin service" do
+shared_examples_for "ThreadsafeService" do
   context ".new" do
     it "is private" do
       expect { described_class.new }.to raise_error(NoMethodError)

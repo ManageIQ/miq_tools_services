@@ -11,7 +11,7 @@ describe MiqToolsServices::Bugzilla do
     described_class.call { |bz| yield bz }
   end
 
-  it_should_behave_like "ServiceMixin service"
+  it_should_behave_like "ThreadsafeService"
 
   context ".ids_in_git_commit_message" do
     it "with no bugs" do

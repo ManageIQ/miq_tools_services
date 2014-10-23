@@ -11,7 +11,7 @@ describe MiqToolsServices::MiniGit do
     described_class.call("/path/to/repo") { |git| yield git }
   end
 
-  it_should_behave_like "ServiceMixin service"
+  it_should_behave_like "ThreadsafeService"
 
   context ".bugzilla_ids" do
     it "with no bugs" do

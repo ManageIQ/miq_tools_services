@@ -1,6 +1,6 @@
 module MiqToolsServices
   class Github
-    include ServiceMixin
+    include ThreadsafeService
 
     class << self
       attr_accessor :credentials

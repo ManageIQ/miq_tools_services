@@ -1,6 +1,6 @@
 module MiqToolsServices
   class MiniGit
-    include ServiceMixin
+    include ThreadsafeService
 
     # All MiniGit methods return stdout which always has a trailing newline
     # that is never wanted, so remove it always.

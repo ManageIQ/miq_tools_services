@@ -3,7 +3,7 @@ require "active_support/core_ext/module/delegation"
 require "active_support/concern"
 
 module MiqToolsServices
-  module ServiceMixin
+  module ThreadsafeService
     extend ActiveSupport::Concern
 
     included do
