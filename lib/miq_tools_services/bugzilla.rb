@@ -14,8 +14,9 @@ module MiqToolsServices
       resolved
     )
 
-    URL_REGEX = %r{https://bugzilla\.redhat\.com//?show_bug\.cgi\?id=(?<bug_id>\d+)}
-    MATCH_REGEX = /^((#{CLOSING_KEYWORDS.join("|")}):?)?\s*#{URL_REGEX}$/i
+    URL_REGEX         = %r{https://bugzilla\.redhat\.com//?show_bug\.cgi\?id=(?<bug_id>\d+)}
+    ONLY_URL_REGEX    = /^#{URL_REGEX}$/
+    CLOSING_URL_REGEX = /^((#{CLOSING_KEYWORDS.join("|")}):?)?\s*#{URL_REGEX}$/i
 
     class << self
       attr_accessor :credentials
@@ -44,13 +45,20 @@ module MiqToolsServices
       ActiveBugzilla::Bug.find(find_options)
     end
 
+    def self.parse_id(line, regex = URL_REGEX)
+      regex.match(line)[:bug_id].try(:to_i)
+    end
+
+    def self.parse_ids(message, regex = URL_REGEX)
+      message.each_line.collect { |line| parse_bug_id(line, regex) }.compact
+    end
+
     def self.ids_in_git_commit_message(message)
-      ids = []
-      message.each_line.collect do |line|
-        match = MATCH_REGEX.match(line)
-        ids << match[:bug_id].to_i if match
-      end
-      ids
+      parse_ids(message, CLOSING_URL_REGEX)
+    end
+
+    def self.url_for(id)
+      "https://bugzilla.redhat.com/show_bug.cgi?id=#{id}"
     end
   end
 end
