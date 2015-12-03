@@ -89,19 +89,14 @@ module MiqToolsServices
       output = diff("--patience", "-U0", "--no-color", "#{commit1}...#{commit2}")
 
       ret = Hash.new { |h, k| h[k] = [] }
-      path = line_number = nil
-      output.each_line do |line|
-        # Note: We are intentionally ignoring deletes "-" for now
-        case line
-        when /^--- (?:a\/)?/
-          next
-        when /^\+\+\+ (?:b\/)?(.+)/
-          path = $1.chomp
-        when /^@@ -\d+(?:,\d+)? \+(\d+)(?:,\d+)? @@/
-          line_number = $1.to_i
-        when /^[ +]/
-          ret[path] << line_number
-          line_number += 1
+      current_path = nil
+      # Note: We are only looking at the line numbering of the B side
+      output.scan(/^\+\+\+ (?:b\/)?(.+)|^@@ -\d+(?:,\d+)? \+(\d+)(?:,(\d+))? @@/) do |filename, first, count|
+        if filename
+          current_path = filename
+        else
+          count ||= 1
+          ret[current_path].concat((first.to_i...first.to_i + count.to_i).to_a)
         end
       end
       ret

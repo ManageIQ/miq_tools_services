@@ -152,7 +152,7 @@ new file mode 100644
 index 0000000..b4c1281
 --- /dev/null
 +++ b/new_file.rb
-@@ -0,0 +1,39 @@
+@@ -0,0 +1,3 @@
 +class SomeClass
 +end
 +
