@@ -90,7 +90,8 @@ module MiqToolsServices
 
       ret = Hash.new { |h, k| h[k] = [] }
       path = line_number = nil
-      output.lines.each_with_object(ret) do |line, h|
+      output.each_line do |line|
+        # Note: We are intentionally ignoring deletes "-" for now
         case line
         when /^--- (?:a\/)?/
           next
@@ -98,13 +99,12 @@ module MiqToolsServices
           path = $1.chomp
         when /^@@ -\d+(?:,\d+)? \+(\d+)(?:,\d+)? @@/
           line_number = $1.to_i
-        when /^([ +-])/
-          if $1 != "-"
-            h[path] << line_number
-            line_number += 1
-          end
+        when /^[ +]/
+          ret[path] << line_number
+          line_number += 1
         end
       end
+      ret
     end
 
     def diff_file_names(commit1, commit2 = nil)
