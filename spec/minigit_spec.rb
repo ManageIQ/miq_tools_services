@@ -13,6 +13,27 @@ describe MiqToolsServices::MiniGit do
 
   it_should_behave_like "ServiceMixin service"
 
+  context ".clone" do
+    let(:command) { "git clone" }
+    let(:params)  { ["git@example.com:org/repo.git", "destination_dir"] }
+
+    it "when it succeeds" do
+      result = stub_good_run!(command, :params => params)
+      expect(STDERR).to receive(:puts).with("+ #{result.command_line}")
+      expect(STDERR).to receive(:puts)
+
+      expect(described_class.clone(*params)).to be true
+    end
+
+    it "when it fails" do
+      result = stub_bad_run!(command, :params => params)
+      expect(STDERR).to receive(:puts).with("+ #{result.command_line}")
+
+      require 'minigit' # To bring in the classes for testing
+      expect { described_class.clone(*params) }.to raise_error(MiniGit::GitError)
+    end
+  end
+
   context ".bugzilla_ids" do
     it "with no bugs" do
       message = <<-EOF
@@ -249,38 +270,38 @@ index 4f807bb..57e5993 100644
 
   context ".pr_branch?" do
     it "with a pr branch" do
-      expect(described_class.pr_branch?("pr/133")).to be_true
+      expect(described_class.pr_branch?("pr/133")).to be_truthy
     end
 
     it "with a regular branch" do
-      expect(described_class.pr_branch?("master")).to be_false
+      expect(described_class.pr_branch?("master")).to be_falsey
     end
   end
 
   context "#pr_branch?" do
     it "with pr branch" do
       with_service do |git|
-        expect(git.pr_branch?("pr/133")).to be_true
+        expect(git.pr_branch?("pr/133")).to be_truthy
       end
     end
 
     it "with regular branch" do
       with_service do |git|
-        expect(git.pr_branch?("master")).to be_false
+        expect(git.pr_branch?("master")).to be_falsey
       end
     end
 
     it "with no branch and current branch is a pr branch" do
       described_class.any_instance.stub(:current_branch => "pr/133")
       with_service do |git|
-        expect(git.pr_branch?).to be_true
+        expect(git.pr_branch?).to be_truthy
       end
     end
 
     it "with no branch and current branch is a regular branch" do
       described_class.any_instance.stub(:current_branch => "master")
       with_service do |git|
-        expect(git.pr_branch?).to be_false
+        expect(git.pr_branch?).to be_falsey
       end
     end
   end
