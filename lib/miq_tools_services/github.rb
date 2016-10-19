@@ -86,5 +86,14 @@ module MiqToolsServices
         issues.labels.add(user, repo, issue_id, label)
       end
     end
+
+    def remove_issue_labels(issue_id, labels)
+      old_labels = issue_label_names(issue_id)
+
+      Array(labels).each do |label|
+        next if old_labels.include?(label)
+        issues.labels.remove(user, repo, issue_id, label)
+      end
+    end
   end
 end
