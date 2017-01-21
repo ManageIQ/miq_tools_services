@@ -1,6 +1,6 @@
 module MiqToolsServices
   class MiniGit
-    include ServiceMixin
+    include ThreadsafeService
 
     def self.clone(*args)
       require 'awesome_spawn'

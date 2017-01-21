@@ -1,6 +1,6 @@
 module MiqToolsServices
   class Bugzilla
-    include ServiceMixin
+    include ThreadsafeService
 
     CLOSING_KEYWORDS = %w(
       close

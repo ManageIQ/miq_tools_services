@@ -11,7 +11,7 @@ describe MiqToolsServices::MiniGit do
     described_class.call("/path/to/repo") { |git| yield git }
   end
 
-  it_should_behave_like "ServiceMixin service"
+  it_should_behave_like "ThreadsafeService"
 
   context ".clone" do
     let(:command) { "git clone" }

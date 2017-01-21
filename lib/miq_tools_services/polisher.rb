@@ -1,6 +1,6 @@
 module MiqToolsServices
   class Polisher
-    include ServiceMixin
+    include ThreadsafeService
 
     attr_accessor :gemfile_path
 

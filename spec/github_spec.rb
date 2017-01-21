@@ -11,5 +11,5 @@ describe MiqToolsServices::Github do
     described_class.call(:user => "ManageIQ", :repo => "sandbox") { |git| yield git }
   end
 
-  it_should_behave_like "ServiceMixin service"
+  it_should_behave_like "ThreadsafeService"
 end
