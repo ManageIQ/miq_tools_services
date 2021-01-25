@@ -19,6 +19,8 @@ Gem::Specification.new do |spec|
   spec.test_files    = `git ls-files -- spec/*`.split("\n")
   spec.require_paths = ["lib"]
 
+  spec.required_ruby_version = ">= 2.5.8"
+
   spec.add_dependency "activesupport"
   spec.add_dependency "minigit",       "~> 0.0.4"
   spec.add_dependency "github_api",    "~> 0.11.1"
