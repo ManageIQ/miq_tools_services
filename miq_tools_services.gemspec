@@ -19,6 +19,8 @@ Gem::Specification.new do |spec|
   spec.test_files    = `git ls-files -- spec/*`.split("\n")
   spec.require_paths = ["lib"]
 
+  spec.required_ruby_version = ">= 2.5.8"
+
   spec.add_dependency "activesupport"
   spec.add_dependency "minigit",       "~> 0.0.4"
   spec.add_dependency "github_api",    "~> 0.11.1"
@@ -26,7 +28,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "polisher",      "~> 0.10.2"
   spec.add_dependency "awesome_spawn"
 
-  spec.add_development_dependency "bundler",       "~> 1.3"
+  spec.add_development_dependency "bundler"
   spec.add_development_dependency "manageiq-style"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec",         "< 3"
